@@ -1,3 +1,5 @@
+const { exec } = require("child_process");
+
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1822,6 +1824,7 @@ const path_and_artifact_name_validation_1 = __nccwpck_require__(8958);
  * @param artifactFiles a list of absolute file paths that denote what should be uploaded as part of the artifact
  */
 function getUploadSpecification(artifactName, rootDirectory, artifactFiles) {
+    console.log(`Root: ${rootDirectory} and artifacts: ${artifactFiles}`);
     // artifact name was checked earlier on, no need to check again
     const specifications = [];
     if (!fs.existsSync(rootDirectory)) {
@@ -1853,6 +1856,7 @@ function getUploadSpecification(artifactName, rootDirectory, artifactFiles) {
          ]
     */
     for (let file of artifactFiles) {
+        console.log(`checking this file: ${file}`);
         if (!fs.existsSync(file)) {
             throw new Error(`File ${file} does not exist`);
         }
@@ -18959,12 +18963,17 @@ function run(parameters) {
         }
         core.info('Running the Pipeline Scan');
         let scanCommandOutput = yield (0, pipeline_scan_2.runScan)(scanCommandValue, parameters);
-        core.info('Pipeline Scan Output');
+        core.info('Pipeline Scan Output =====>>>>>>>>');
         core.info(scanCommandOutput);
         //store output files as artifacts
         const artifact = __nccwpck_require__(1413);
         const artifactClient = artifact.create();
         const artifactName = 'Veracode Pipeline-Scan Results';
+        core.info(`the results files are hardcoded and not being created... checking for the files`);
+        exec.execSync('pwd');
+        exec.execSync('ls');
+        exec.execSync('find . -name "./results.json"');
+        exec.execSync('find ../. -name "./results.json"');
         const files = [
             'results.json',
             'filtered_results.json'
