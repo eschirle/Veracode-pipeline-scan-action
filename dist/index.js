@@ -1,4 +1,4 @@
-const { exec } = require("child_process");
+const exec = require("@actions/exec");
 
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
@@ -66,6 +66,7 @@ const download_http_client_1 = __nccwpck_require__(6167);
 const download_specification_1 = __nccwpck_require__(9902);
 const config_variables_1 = __nccwpck_require__(5058);
 const path_1 = __nccwpck_require__(1017);
+
 class DefaultArtifactClient {
     /**
      * Constructs a DefaultArtifactClient
