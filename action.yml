@@ -106,4 +106,6 @@ runs:
       with:
         node-version: '16'
     - run: npm install @actions/core @actions/exec
+      shell: bash
     - run: node dist/index.js
+      shell: bash
